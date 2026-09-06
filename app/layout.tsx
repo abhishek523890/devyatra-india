@@ -4,6 +4,8 @@ import { Inter, Fraunces } from 'next/font/google'
 import { SiteHeader } from '@/components/site/site-header'
 import { SiteFooter } from '@/components/site/site-footer'
 import { WhatsAppButton } from '@/components/site/whatsapp-button'
+import { ChromeGate } from '@/components/site/chrome-gate'
+import { getSiteSettings, primaryPhoneOf } from '@/lib/settings'
 import './globals.css'
 
 const inter = Inter({
@@ -50,20 +52,25 @@ export const viewport: Viewport = {
   colorScheme: 'light',
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const settings = await getSiteSettings()
+  const phone = primaryPhoneOf(settings)
+
   return (
     <html lang="en" className={`${inter.variable} ${fraunces.variable} bg-background`}>
       <body className="font-sans antialiased">
         <div className="flex min-h-screen flex-col">
-          <SiteHeader />
+          <SiteHeader phone={phone} />
           <main className="flex-1">{children}</main>
-          <SiteFooter />
+          <ChromeGate>
+            <SiteFooter settings={settings} />
+          </ChromeGate>
         </div>
-        <WhatsAppButton />
+        <WhatsAppButton phone={phone} message={settings.whatsappMessage} />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

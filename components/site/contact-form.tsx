@@ -2,16 +2,29 @@
 
 import { useState } from 'react'
 import { Check, Send } from 'lucide-react'
+import { submitEnquiry } from '@/app/actions/public'
 
 export function ContactForm() {
   const [sent, setSent] = useState(false)
+  const [pending, setPending] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' })
 
-  function submit(e: React.FormEvent) {
+  async function submit(e: React.FormEvent) {
     e.preventDefault()
-    // Demo only — a real build would POST to a server action that stores the
-    // enquiry and triggers a transactional email.
-    setSent(true)
+    setPending(true)
+    setError(null)
+    const res = await submitEnquiry({
+      source: 'contact',
+      name: form.name,
+      phone: form.phone,
+      email: form.email,
+      message: form.message,
+      details: form.subject ? { subject: form.subject } : {},
+    })
+    setPending(false)
+    if (res.ok) setSent(true)
+    else setError(res.error ?? 'Something went wrong. Please try again.')
   }
 
   if (sent) {
@@ -82,12 +95,14 @@ export function ContactForm() {
         />
       </label>
       <div className="sm:col-span-2">
+        {error && <p role="alert" className="mb-3 text-sm text-destructive">{error}</p>}
         <button
           type="submit"
-          className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+          disabled={pending}
+          className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 font-semibold text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
         >
           <Send className="size-4" aria-hidden />
-          Send message
+          {pending ? 'Sending…' : 'Send message'}
         </button>
       </div>
     </form>

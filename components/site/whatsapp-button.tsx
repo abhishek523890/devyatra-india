@@ -1,11 +1,24 @@
+'use client'
+
+import { usePathname } from 'next/navigation'
 import { MessageCircle } from 'lucide-react'
 import { primaryPhone, siteConfig } from '@/lib/site-config'
 
-export function WhatsAppButton() {
-  const message = encodeURIComponent(siteConfig.whatsappMessage)
+type Props = {
+  phone?: { wa: string }
+  message?: string
+}
+
+export function WhatsAppButton({ phone, message }: Props) {
+  const pathname = usePathname()
+  if (pathname?.startsWith('/admin')) return null
+
+  const wa = (phone ?? primaryPhone).wa
+  const text = encodeURIComponent(message ?? siteConfig.whatsappMessage)
+
   return (
     <a
-      href={`https://wa.me/${primaryPhone.wa}?text=${message}`}
+      href={`https://wa.me/${wa}?text=${text}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Enquire on WhatsApp"

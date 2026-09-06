@@ -7,6 +7,8 @@ import { useSearchParams } from 'next/navigation'
 import { Check, ChevronLeft, ShieldCheck, CalendarDays, Users, CircleAlert } from 'lucide-react'
 import { getPackageBySlug } from '@/lib/data'
 import { calculatePrice, formatINR, formatDate, generateBookingRef } from '@/lib/format'
+import { submitBooking } from '@/app/actions/public'
+import type { Package } from '@/lib/types'
 
 type Step = 0 | 1 | 2 | 3
 
@@ -24,9 +26,9 @@ function emptyTraveller(): Traveller {
   return { fullName: '', age: '', gender: '', idType: 'Aadhaar', idNumber: '' }
 }
 
-export function BookingFlow() {
+export function BookingFlow({ pkg: pkgProp }: { pkg?: Package | null }) {
   const search = useSearchParams()
-  const pkg = getPackageBySlug(search.get('package') ?? '')
+  const pkg = pkgProp ?? getPackageBySlug(search.get('package') ?? '')
   const departureId = search.get('departure') ?? ''
   const adults = Math.max(1, Number(search.get('adults') ?? 1))
   const children = Math.max(0, Number(search.get('children') ?? 0))
@@ -90,17 +92,39 @@ export function BookingFlow() {
     return errs.length === 0
   }
 
-  function next() {
+  async function next() {
     if (step === 0 && !validateTravellers()) return
     if (step === 2) {
       setProcessing(true)
-      // Simulated payment — a real integration would create a server-side
-      // order and confirm via a payment webhook.
-      setTimeout(() => {
-        setProcessing(false)
-        setStep(3)
+      // Records the booking request in the database. Payment is still a
+      // demonstration step — a real integration would confirm via a webhook.
+      const res = await submitBooking({
+        reference: bookingRef,
+        packageSlug: pkg!.slug,
+        packageName: pkg!.name,
+        departureLabel: departure ? formatDate(departure.date) : undefined,
+        adults,
+        children,
+        rooms,
+        totalAmount: price!.total,
+        leadName: travellers[0]?.fullName || 'Guest',
+        leadEmail: contact.email,
+        leadPhone: contact.phone,
+        travellers: travellers.map((t) => ({
+          fullName: t.fullName,
+          age: t.age,
+          gender: t.gender,
+          idType: t.idType,
+        })),
+      })
+      setProcessing(false)
+      if (!res.ok) {
+        setErrors([res.error ?? 'We could not record your booking. Please try again or contact us.'])
         window.scrollTo({ top: 0, behavior: 'smooth' })
-      }, 1600)
+        return
+      }
+      setStep(3)
+      window.scrollTo({ top: 0, behavior: 'smooth' })
       return
     }
     setErrors([])

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { PageHero } from '@/components/site/page-hero'
 import { PackagesExplorer } from '@/components/packages/packages-explorer'
+import { getPublishedPackages } from '@/lib/packages'
 
 export const metadata: Metadata = {
   title: 'All Pilgrimage Packages',
@@ -14,6 +15,7 @@ export default async function PackagesPage({
   searchParams: Promise<{ destination?: string; category?: string; duration?: string }>
 }) {
   const sp = await searchParams
+  const allPackages = await getPublishedPackages()
   return (
     <>
       <PageHero
@@ -22,6 +24,7 @@ export default async function PackagesPage({
         breadcrumbs={[{ href: '/', label: 'Home' }, { label: 'Packages' }]}
       />
       <PackagesExplorer
+        allPackages={allPackages}
         initialDestination={sp.destination ?? ''}
         initialCategory={sp.category ?? ''}
         initialDuration={sp.duration ?? ''}

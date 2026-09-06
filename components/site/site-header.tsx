@@ -7,6 +7,8 @@ import { Menu, X, Phone, Mountain } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { primaryPhone } from '@/lib/site-config'
 
+type PhoneProp = { display: string; tel: string }
+
 const navLinks = [
   { href: '/packages', label: 'Packages' },
   { href: '/destinations', label: 'Destinations' },
@@ -16,7 +18,7 @@ const navLinks = [
   { href: '/contact', label: 'Contact' },
 ]
 
-export function SiteHeader() {
+export function SiteHeader({ phone }: { phone?: PhoneProp }) {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -31,6 +33,11 @@ export function SiteHeader() {
   useEffect(() => {
     setOpen(false)
   }, [pathname])
+
+  // Public chrome only — the admin area has its own shell.
+  if (pathname?.startsWith('/admin')) return null
+
+  const tel = phone ?? primaryPhone
 
   return (
     <header
@@ -72,11 +79,11 @@ export function SiteHeader() {
 
         <div className="hidden items-center gap-2 lg:flex">
           <a
-            href={`tel:${primaryPhone.tel}`}
+            href={`tel:${tel.tel}`}
             className="inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium text-secondary hover:bg-muted"
           >
             <Phone className="size-4" aria-hidden />
-            {primaryPhone.display}
+            {tel.display}
           </a>
           <Link
             href="/packages"

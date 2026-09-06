@@ -3,7 +3,8 @@
 import { useMemo, useState } from 'react'
 import { SlidersHorizontal, Search, X } from 'lucide-react'
 import { PackageCard } from '@/components/site/package-card'
-import { packages, destinations, categories } from '@/lib/data'
+import { destinations } from '@/lib/data'
+import type { Package } from '@/lib/types'
 import { cn } from '@/lib/utils'
 
 type Duration = '' | 'short' | 'medium' | 'long'
@@ -30,14 +31,20 @@ function matchesPrice(price: number, band: string) {
 }
 
 export function PackagesExplorer({
+  allPackages,
   initialDestination = '',
   initialCategory = '',
   initialDuration = '',
 }: {
+  allPackages: Package[]
   initialDestination?: string
   initialCategory?: string
   initialDuration?: string
 }) {
+  const categories = useMemo(
+    () => Array.from(new Set(allPackages.map((p) => p.category))),
+    [allPackages],
+  )
   const [query, setQuery] = useState('')
   const [destination, setDestination] = useState(initialDestination)
   const [category, setCategory] = useState(initialCategory)
@@ -48,7 +55,7 @@ export function PackagesExplorer({
   const [showFilters, setShowFilters] = useState(false)
 
   const results = useMemo(() => {
-    let list = packages.filter((p) => p.status === 'published')
+    let list = allPackages.filter((p) => p.status === 'published')
     if (query.trim()) {
       const q = query.toLowerCase()
       list = list.filter(
@@ -75,7 +82,7 @@ export function PackagesExplorer({
         list = [...list].sort((a, b) => Number(b.featured) - Number(a.featured))
     }
     return list
-  }, [query, destination, category, duration, priceBand, difficulty, sort])
+  }, [allPackages, query, destination, category, duration, priceBand, difficulty, sort])
 
   const activeCount = [destination, category, duration, priceBand, difficulty].filter(Boolean).length
 

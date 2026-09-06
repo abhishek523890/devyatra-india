@@ -3,9 +3,12 @@
 import { useState } from 'react'
 import { Check, Sparkles } from 'lucide-react'
 import { destinations } from '@/lib/data'
+import { submitEnquiry } from '@/app/actions/public'
 
 export function CustomTourForm() {
   const [sent, setSent] = useState(false)
+  const [pending, setPending] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -41,9 +44,30 @@ export function CustomTourForm() {
 
   return (
     <form
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault()
-        setSent(true)
+        setPending(true)
+        setError(null)
+        const pickNames = form.picks
+          .map((slug) => destinations.find((d) => d.slug === slug)?.name ?? slug)
+          .join(', ')
+        const res = await submitEnquiry({
+          source: 'custom_tour',
+          name: form.name,
+          phone: form.phone,
+          email: form.email,
+          message: form.notes,
+          details: {
+            travellers: form.travellers,
+            duration_days: form.duration,
+            budget: form.budget,
+            preferred_month: form.month,
+            destinations: pickNames || '—',
+          },
+        })
+        setPending(false)
+        if (res.ok) setSent(true)
+        else setError(res.error ?? 'Something went wrong. Please try again.')
       }}
       className="rounded-2xl border border-border bg-card p-6 md:p-8"
     >
@@ -117,12 +141,14 @@ export function CustomTourForm() {
         />
       </label>
 
+      {error && <p role="alert" className="mt-4 text-sm text-destructive">{error}</p>}
       <button
         type="submit"
-        className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+        disabled={pending}
+        className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 font-semibold text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
       >
         <Sparkles className="size-4" aria-hidden />
-        Request my itinerary
+        {pending ? 'Sending…' : 'Request my itinerary'}
       </button>
     </form>
   )

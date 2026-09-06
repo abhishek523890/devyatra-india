@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Mountain, Mail, Phone, MapPin } from 'lucide-react'
 import { NewsletterForm } from './newsletter-form'
-import { siteConfig } from '@/lib/site-config'
+import { addressOneLineOf, type SiteSettings } from '@/lib/settings'
 
 const socials = [
   {
@@ -51,7 +51,7 @@ const columns = [
   },
 ]
 
-export function SiteFooter() {
+export function SiteFooter({ settings }: { settings: SiteSettings }) {
   return (
     <footer className="mt-24 bg-secondary text-secondary-foreground">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -73,16 +73,16 @@ export function SiteFooter() {
             <div className="flex flex-col gap-2 text-sm text-secondary-foreground/80">
               <span className="flex items-start gap-2">
                 <MapPin className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
-                <span>{siteConfig.address.lines.join(', ')}</span>
+                <span>{addressOneLineOf(settings)}</span>
               </span>
-              {siteConfig.phones.map((phone) => (
+              {settings.phones.map((phone) => (
                 <a key={phone.tel} href={`tel:${phone.tel}`} className="inline-flex items-center gap-2 hover:text-primary">
                   <Phone className="size-4 text-primary" aria-hidden /> {phone.display}
                 </a>
               ))}
-              {siteConfig.email && (
-                <a href={`mailto:${siteConfig.email}`} className="inline-flex items-center gap-2 hover:text-primary">
-                  <Mail className="size-4 text-primary" aria-hidden /> {siteConfig.email}
+              {settings.email && (
+                <a href={`mailto:${settings.email}`} className="inline-flex items-center gap-2 hover:text-primary">
+                  <Mail className="size-4 text-primary" aria-hidden /> {settings.email}
                 </a>
               )}
             </div>

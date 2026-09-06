@@ -22,12 +22,9 @@ import { InclusionTabs } from '@/components/packages/inclusion-tabs'
 import { FaqAccordion } from '@/components/site/faq-accordion'
 import { PackageCard } from '@/components/site/package-card'
 import { SectionHeading } from '@/components/site/section-heading'
-import { getPackageBySlug, getRelatedPackages, getDestinationBySlug, packages } from '@/lib/data'
+import { getDestinationBySlug } from '@/lib/data'
+import { getPublishedPackageBySlug, getRelatedPublishedPackages } from '@/lib/packages'
 import { formatDate } from '@/lib/format'
-
-export function generateStaticParams() {
-  return packages.map((p) => ({ slug: p.slug }))
-}
 
 export async function generateMetadata({
   params,
@@ -35,7 +32,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>
 }): Promise<Metadata> {
   const { slug } = await params
-  const pkg = getPackageBySlug(slug)
+  const pkg = await getPublishedPackageBySlug(slug)
   if (!pkg) return { title: 'Package not found' }
   return {
     title: pkg.name,
@@ -57,11 +54,11 @@ export default async function PackageDetailPage({
 }) {
   const { slug } = await params
   const { departure } = await searchParams
-  const pkg = getPackageBySlug(slug)
+  const pkg = await getPublishedPackageBySlug(slug)
   if (!pkg) notFound()
 
   const destination = getDestinationBySlug(pkg.destinationSlug)
-  const related = getRelatedPackages(pkg)
+  const related = await getRelatedPublishedPackages(pkg)
 
   const facts = [
     { icon: Clock, label: 'Duration', value: `${pkg.days} Days / ${pkg.nights} Nights` },

@@ -3,12 +3,15 @@
 import { useState } from 'react'
 import { Check, Send, Phone, MessageCircle } from 'lucide-react'
 import { primaryPhone, secondaryPhone, siteConfig } from '@/lib/site-config'
+import { submitEnquiry } from '@/app/actions/public'
 
 const PHONE_PRIMARY = primaryPhone.wa
 const PHONE_SECONDARY = secondaryPhone.wa
 
 export function CharDhamEnquiryForm() {
   const [sent, setSent] = useState(false)
+  const [pending, setPending] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   const [form, setForm] = useState({
     name: '',
     phone: '',
@@ -17,11 +20,23 @@ export function CharDhamEnquiryForm() {
     message: '',
   })
 
-  function submit(e: React.FormEvent) {
+  async function submit(e: React.FormEvent) {
     e.preventDefault()
-    // Demo only — a production build would POST this enquiry to a server action
-    // that stores it and notifies Parth Sarthi Holidays.
-    setSent(true)
+    setPending(true)
+    setError(null)
+    const res = await submitEnquiry({
+      source: 'char_dham',
+      name: form.name,
+      phone: form.phone,
+      message: form.message,
+      details: {
+        travellers: form.travellers,
+        preferred_date: form.date || '—',
+      },
+    })
+    setPending(false)
+    if (res.ok) setSent(true)
+    else setError(res.error ?? 'Something went wrong. Please try again.')
   }
 
   if (sent) {
@@ -109,13 +124,15 @@ export function CharDhamEnquiryForm() {
           placeholder="Tell us about your group and any special requirements…"
         />
       </label>
+      {error && <p role="alert" className="text-sm text-destructive sm:col-span-2">{error}</p>}
       <div className="flex flex-col gap-3 sm:col-span-2 sm:flex-row sm:items-center">
         <button
           type="submit"
-          className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3 font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+          disabled={pending}
+          className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3 font-semibold text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
         >
           <Send className="size-4" aria-hidden />
-          Submit enquiry
+          {pending ? 'Sending…' : 'Submit enquiry'}
         </button>
         <div className="flex gap-3">
           <a
