@@ -46,8 +46,11 @@ export async function updateSession(request: NextRequest) {
   const isAdminArea = pathname.startsWith('/admin')
   const isAdminPublic =
     pathname === '/admin/login' || pathname === '/admin/setup'
+  // Only accounts explicitly flagged as admins may reach the dashboard. A
+  // signed-in account without the flag is treated like a logged-out visitor.
+  const isAdmin = user?.user_metadata?.is_admin === true
 
-  if (isAdminArea && !isAdminPublic && !user) {
+  if (isAdminArea && !isAdminPublic && !isAdmin) {
     const url = request.nextUrl.clone()
     url.pathname = '/admin/login'
     return NextResponse.redirect(url)

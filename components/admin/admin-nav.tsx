@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LayoutDashboard, Package, CalendarCheck, MessageSquare, Settings } from 'lucide-react'
+import { LayoutDashboard, Package, CalendarCheck, MessageSquare, Settings, Users } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const links = [
@@ -10,6 +10,7 @@ const links = [
   { href: '/admin/packages', label: 'Packages', icon: Package },
   { href: '/admin/bookings', label: 'Bookings', icon: CalendarCheck },
   { href: '/admin/enquiries', label: 'Enquiries', icon: MessageSquare },
+  { href: '/admin/admins', label: 'Admins', icon: Users },
   { href: '/admin/settings', label: 'Site Details', icon: Settings },
 ]
 

@@ -11,10 +11,19 @@ export async function getCurrentUser() {
   return user
 }
 
-/** Redirects to the login page when there is no signed-in admin. */
+/** True when a user account carries the admin flag. */
+export function isAdminUser(user: { user_metadata?: Record<string, unknown> } | null) {
+  return user?.user_metadata?.is_admin === true
+}
+
+/**
+ * Redirects to the login page unless the signed-in user is a verified admin.
+ * A logged-in account without the admin flag (e.g. a self-registered user) is
+ * treated exactly like a logged-out visitor.
+ */
 export async function requireAdmin() {
   const user = await getCurrentUser()
-  if (!user) redirect('/admin/login')
+  if (!user || !isAdminUser(user)) redirect('/admin/login')
   return user
 }
 

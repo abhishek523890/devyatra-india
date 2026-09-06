@@ -47,10 +47,16 @@ export async function login(_prev: AuthState, formData: FormData): Promise<AuthS
   if (!isValidEmail(email) || !password) return { error: 'Please enter your email and password.' }
 
   const supabase = await createClient()
-  const { error } = await supabase.auth.signInWithPassword({ email, password })
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password })
   if (error) {
     // Genericize the credential signal to avoid account enumeration.
     return { error: 'Invalid email or password.' }
+  }
+
+  // Block accounts that authenticate but were never granted admin access.
+  if (data.user?.user_metadata?.is_admin !== true) {
+    await supabase.auth.signOut()
+    return { error: 'This account does not have admin access.' }
   }
 
   redirect('/admin')
