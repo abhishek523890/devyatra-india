@@ -38,6 +38,10 @@ export const metadata: Metadata = {
     'DevYatra India',
   ],
   generator: 'v0.app',
+  // 👇 ADD THIS
+  verification: {
+    google: 'DUMx6bkF7aD-E7KP68g4iZ5iHIivC6lB7hTJyqIZenw',
+  },
   openGraph: {
     type: 'website',
     title: 'DevYatra India — Sacred Pilgrimage & Spiritual Journeys',
@@ -76,3 +80,4 @@ export default async function RootLayout({
     </html>
   )
 }
+
