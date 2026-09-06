@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { Menu, X, Phone, Mountain } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { primaryPhone } from '@/lib/site-config'
 
 const navLinks = [
   { href: '/packages', label: 'Packages' },
@@ -71,11 +72,11 @@ export function SiteHeader() {
 
         <div className="hidden items-center gap-2 lg:flex">
           <a
-            href="tel:+919000000000"
+            href={`tel:${primaryPhone.tel}`}
             className="inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium text-secondary hover:bg-muted"
           >
             <Phone className="size-4" aria-hidden />
-            +91 90000 00000
+            {primaryPhone.display}
           </a>
           <Link
             href="/packages"

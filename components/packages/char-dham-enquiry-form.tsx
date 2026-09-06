@@ -2,9 +2,10 @@
 
 import { useState } from 'react'
 import { Check, Send, Phone, MessageCircle } from 'lucide-react'
+import { primaryPhone, secondaryPhone, siteConfig } from '@/lib/site-config'
 
-const PHONE_PRIMARY = '917061887271'
-const PHONE_SECONDARY = '919084477271'
+const PHONE_PRIMARY = primaryPhone.wa
+const PHONE_SECONDARY = secondaryPhone.wa
 
 export function CharDhamEnquiryForm() {
   const [sent, setSent] = useState(false)
@@ -31,7 +32,7 @@ export function CharDhamEnquiryForm() {
         </div>
         <h3 className="mt-4 font-serif text-xl font-semibold text-foreground">Enquiry received</h3>
         <p className="mt-2 text-sm text-muted-foreground">
-          Thank you, {form.name || 'traveller'}. Our team at Parth Sarthi Holidays will call you back shortly to plan
+          Thank you, {form.name || 'traveller'}. Our team at {siteConfig.legalName} will call you back shortly to plan
           your Char Dham Yatra.
         </p>
         <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">

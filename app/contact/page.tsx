@@ -2,18 +2,22 @@ import type { Metadata } from 'next'
 import { PageHero } from '@/components/site/page-hero'
 import { ContactForm } from '@/components/site/contact-form'
 import { Phone, Mail, MapPin, Clock, MessageCircle } from 'lucide-react'
+import { siteConfig, primaryPhone, secondaryPhone, addressOneLine } from '@/lib/site-config'
 
 export const metadata: Metadata = {
   title: 'Contact Us',
-  description: 'Get in touch with DevYatra India to plan your pilgrimage. Call, email or send us a message.',
+  description: 'Get in touch with DevYatra India to plan your pilgrimage. Call, WhatsApp or send us a message.',
 }
 
 const details = [
-  { icon: Phone, label: 'Phone', value: '+91 90000 00000', href: 'tel:+919000000000' },
-  { icon: MessageCircle, label: 'WhatsApp', value: 'Chat with us', href: 'https://wa.me/919000000000' },
-  { icon: Mail, label: 'Email', value: 'yatra@devyatra.example', href: 'mailto:yatra@devyatra.example' },
-  { icon: MapPin, label: 'Office', value: 'Haridwar, Uttarakhand, India' },
-  { icon: Clock, label: 'Hours', value: 'Mon–Sat, 9:00 AM – 7:00 PM IST' },
+  { icon: Phone, label: 'Phone', value: primaryPhone.display, href: `tel:${primaryPhone.tel}` },
+  { icon: Phone, label: 'Phone (alternate)', value: secondaryPhone.display, href: `tel:${secondaryPhone.tel}` },
+  { icon: MessageCircle, label: 'WhatsApp', value: 'Chat with us', href: `https://wa.me/${primaryPhone.wa}` },
+  ...(siteConfig.email
+    ? [{ icon: Mail, label: 'Email', value: siteConfig.email, href: `mailto:${siteConfig.email}` }]
+    : []),
+  { icon: MapPin, label: 'Office', value: addressOneLine },
+  { icon: Clock, label: 'Hours', value: siteConfig.hours },
 ]
 
 export default function ContactPage() {

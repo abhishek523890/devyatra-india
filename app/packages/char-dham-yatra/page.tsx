@@ -26,6 +26,7 @@ import { SectionHeading } from '@/components/site/section-heading'
 import { Badge } from '@/components/ui/badge'
 import { FaqAccordion } from '@/components/site/faq-accordion'
 import { CharDhamEnquiryForm, PHONE_PRIMARY, PHONE_SECONDARY } from '@/components/packages/char-dham-enquiry-form'
+import { siteConfig, primaryPhone, secondaryPhone, addressOneLine } from '@/lib/site-config'
 
 export const metadata: Metadata = {
   title: 'Char Dham Yatra 10 Days from Haridwar | Parth Sarthi Holidays',
@@ -582,26 +583,24 @@ export default function CharDhamYatraPage() {
             <div>
               <p className="text-sm font-semibold tracking-wide text-primary uppercase">Organised by</p>
               <h2 className="mt-2 font-serif text-2xl font-semibold text-secondary sm:text-3xl">
-                Parth Sarthi Holidays
+                {siteConfig.legalName}
               </h2>
               <p className="mt-3 font-serif text-lg text-primary italic">
-                &ldquo;Hum Safar Nahi... Yaadon Ka Hissa Banate Hain!&rdquo;
+                &ldquo;{siteConfig.tagline}&rdquo;
               </p>
               <address className="mt-5 not-italic">
                 <p className="flex gap-3 text-sm text-foreground">
                   <MapPin className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden />
-                  <span className="text-pretty">
-                    207 Sharvan Nath Nagar, Himalaya Depot Gali No. 1, Shiv Murti, Haridwar, Uttarakhand – 249401
-                  </span>
+                  <span className="text-pretty">{addressOneLine}</span>
                 </p>
                 <div className="mt-4 flex flex-col gap-2">
-                  <a href={`tel:+${PHONE_PRIMARY}`} className="inline-flex items-center gap-3 text-sm text-foreground hover:text-primary">
+                  <a href={`tel:${primaryPhone.tel}`} className="inline-flex items-center gap-3 text-sm text-foreground hover:text-primary">
                     <Phone className="size-5 shrink-0 text-primary" aria-hidden />
-                    +91 70618 87271
+                    {primaryPhone.display}
                   </a>
-                  <a href={`tel:+${PHONE_SECONDARY}`} className="inline-flex items-center gap-3 text-sm text-foreground hover:text-primary">
+                  <a href={`tel:${secondaryPhone.tel}`} className="inline-flex items-center gap-3 text-sm text-foreground hover:text-primary">
                     <Phone className="size-5 shrink-0 text-primary" aria-hidden />
-                    +91 90844 77271
+                    {secondaryPhone.display}
                   </a>
                 </div>
               </address>
@@ -627,7 +626,7 @@ export default function CharDhamYatraPage() {
 
             <div className="flex flex-col justify-center gap-3 rounded-2xl bg-muted/50 p-6">
               <p className="text-sm font-semibold tracking-wide text-muted-foreground uppercase">Registrations</p>
-              {['GST Registered', 'Registered with Uttarakhand Tourism Department', 'Udyam Registered'].map((r) => (
+              {siteConfig.registrations.map((r) => (
                 <div key={r} className="flex items-center gap-3 rounded-xl border border-border bg-card px-4 py-3">
                   <BadgeCheck className="size-5 shrink-0 text-emerald-600" aria-hidden />
                   <span className="text-sm font-medium text-secondary">{r}</span>

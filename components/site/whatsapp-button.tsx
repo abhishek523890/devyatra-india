@@ -1,10 +1,11 @@
 import { MessageCircle } from 'lucide-react'
+import { primaryPhone, siteConfig } from '@/lib/site-config'
 
 export function WhatsAppButton() {
-  const message = encodeURIComponent('Namaste! I would like to enquire about a DevYatra India pilgrimage package.')
+  const message = encodeURIComponent(siteConfig.whatsappMessage)
   return (
     <a
-      href={`https://wa.me/919000000000?text=${message}`}
+      href={`https://wa.me/${primaryPhone.wa}?text=${message}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Enquire on WhatsApp"

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Mountain, Mail, Phone, MapPin } from 'lucide-react'
 import { NewsletterForm } from './newsletter-form'
+import { siteConfig } from '@/lib/site-config'
 
 const socials = [
   {
@@ -70,15 +71,20 @@ export function SiteFooter() {
               comfortably arranged for a meaningful yatra.
             </p>
             <div className="flex flex-col gap-2 text-sm text-secondary-foreground/80">
-              <span className="inline-flex items-center gap-2">
-                <MapPin className="size-4 text-primary" aria-hidden /> Rishikesh, Uttarakhand, India
+              <span className="flex items-start gap-2">
+                <MapPin className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
+                <span>{siteConfig.address.lines.join(', ')}</span>
               </span>
-              <a href="tel:+919000000000" className="inline-flex items-center gap-2 hover:text-primary">
-                <Phone className="size-4 text-primary" aria-hidden /> +91 90000 00000
-              </a>
-              <a href="mailto:hello@devyatraindia.com" className="inline-flex items-center gap-2 hover:text-primary">
-                <Mail className="size-4 text-primary" aria-hidden /> hello@devyatraindia.com
-              </a>
+              {siteConfig.phones.map((phone) => (
+                <a key={phone.tel} href={`tel:${phone.tel}`} className="inline-flex items-center gap-2 hover:text-primary">
+                  <Phone className="size-4 text-primary" aria-hidden /> {phone.display}
+                </a>
+              ))}
+              {siteConfig.email && (
+                <a href={`mailto:${siteConfig.email}`} className="inline-flex items-center gap-2 hover:text-primary">
+                  <Mail className="size-4 text-primary" aria-hidden /> {siteConfig.email}
+                </a>
+              )}
             </div>
             <div className="mt-2 flex items-center gap-3">
               {socials.map((s) => (
