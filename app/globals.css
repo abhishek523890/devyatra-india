@@ -156,3 +156,15 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .input {
+    @apply w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm text-foreground shadow-sm transition-colors placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-ring/40 focus:outline-none;
+  }
+  .textarea {
+    @apply w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm leading-relaxed text-foreground shadow-sm transition-colors placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-ring/40 focus:outline-none;
+  }
+  .field-label {
+    @apply mb-1 block text-sm font-medium text-secondary;
+  }
+}

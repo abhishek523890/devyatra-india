@@ -8,14 +8,18 @@ import { SectionHeading } from '@/components/site/section-heading'
 import { PackageCard } from '@/components/site/package-card'
 import { DestinationCard } from '@/components/site/destination-card'
 import { FaqAccordion } from '@/components/site/faq-accordion'
-import { packages, destinations, faqs, categories } from '@/lib/data'
+import { destinations, faqs } from '@/lib/data'
+import { getPublishedPackages } from '@/lib/packages'
 import { formatDate, formatINR } from '@/lib/format'
 
-export default function HomePage() {
-  const featuredPackages = packages.filter((p) => p.featured).slice(0, 6)
+export default async function HomePage() {
+  const allPackages = await getPublishedPackages()
+  const categories = Array.from(new Set(allPackages.map((p) => p.category)))
+  const featured = allPackages.filter((p) => p.featured)
+  const featuredPackages = (featured.length > 0 ? featured : allPackages).slice(0, 6)
   const featuredDestinations = destinations.filter((d) => d.featured).slice(0, 4)
 
-  const upcoming = packages
+  const upcoming = allPackages
     .flatMap((p) => p.departures.map((d) => ({ pkg: p, dep: d })))
     .sort((a, b) => a.dep.date.localeCompare(b.dep.date))
     .slice(0, 4)

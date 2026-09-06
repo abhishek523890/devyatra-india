@@ -5,6 +5,9 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { Menu, X, Phone, Mountain } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { primaryPhone } from '@/lib/site-config'
+
+type PhoneProp = { display: string; tel: string }
 
 const navLinks = [
   { href: '/packages', label: 'Packages' },
@@ -15,7 +18,7 @@ const navLinks = [
   { href: '/contact', label: 'Contact' },
 ]
 
-export function SiteHeader() {
+export function SiteHeader({ phone }: { phone?: PhoneProp }) {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -30,6 +33,11 @@ export function SiteHeader() {
   useEffect(() => {
     setOpen(false)
   }, [pathname])
+
+  // Public chrome only — the admin area has its own shell.
+  if (pathname?.startsWith('/admin')) return null
+
+  const tel = phone ?? primaryPhone
 
   return (
     <header
@@ -71,11 +79,11 @@ export function SiteHeader() {
 
         <div className="hidden items-center gap-2 lg:flex">
           <a
-            href="tel:+919000000000"
+            href={`tel:${tel.tel}`}
             className="inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium text-secondary hover:bg-muted"
           >
             <Phone className="size-4" aria-hidden />
-            +91 90000 00000
+            {tel.display}
           </a>
           <Link
             href="/packages"
@@ -110,10 +118,10 @@ export function SiteHeader() {
             ))}
             <div className="mt-2 flex flex-col gap-2 border-t border-border pt-3">
               <Link
-                href="/login"
+                href="/contact"
                 className="rounded-lg px-3 py-2.5 text-sm font-medium text-secondary hover:bg-muted"
               >
-                Login / Register
+                Contact us
               </Link>
               <Link
                 href="/packages"
