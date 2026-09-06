@@ -110,10 +110,10 @@ export function SiteHeader() {
             ))}
             <div className="mt-2 flex flex-col gap-2 border-t border-border pt-3">
               <Link
-                href="/login"
+                href="/contact"
                 className="rounded-lg px-3 py-2.5 text-sm font-medium text-secondary hover:bg-muted"
               >
-                Login / Register
+                Contact us
               </Link>
               <Link
                 href="/packages"
