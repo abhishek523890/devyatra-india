@@ -6,6 +6,7 @@ import { Minus, Plus, MessageCircle, CalendarDays } from 'lucide-react'
 import { calculatePrice, formatINR, formatDate } from '@/lib/format'
 import type { Package } from '@/lib/types'
 import { cn } from '@/lib/utils'
+import { primaryPhone } from '@/lib/site-config'
 
 function Stepper({
   label,
@@ -87,7 +88,7 @@ export function BookingWidget({ pkg, initialDepartureId }: { pkg: Package; initi
     router.push(`/booking?${params.toString()}`)
   }
 
-  const whatsapp = `https://wa.me/919000000000?text=${encodeURIComponent(
+  const whatsapp = `https://wa.me/${primaryPhone.wa}?text=${encodeURIComponent(
     `Namaste! I'm interested in the ${pkg.name} package. Could you share more details?`,
   )}`
 
