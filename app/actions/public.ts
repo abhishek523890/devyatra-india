@@ -2,6 +2,7 @@
 
 import { revalidatePath } from 'next/cache'
 import { createClient } from '@/lib/supabase/server'
+import { sendEnquiryEmails, sendBookingEmails } from '@/lib/email'
 
 export type SubmitResult = { ok: boolean; error?: string }
 
@@ -26,6 +27,15 @@ export async function submitEnquiry(input: {
       details: input.details ?? {},
     })
     if (error) return { ok: false, error: 'We could not submit your enquiry right now. Please call or WhatsApp us.' }
+    // Email notifications are best-effort — they never block a successful submission.
+    await sendEnquiryEmails({
+      source: input.source,
+      name: input.name.trim(),
+      phone: input.phone?.trim(),
+      email: input.email?.trim(),
+      message: input.message?.trim(),
+      details: input.details,
+    })
     revalidatePath('/admin/enquiries')
     return { ok: true }
   } catch {
@@ -64,6 +74,18 @@ export async function submitBooking(input: {
       travellers: input.travellers ?? [],
     })
     if (error) return { ok: false, error: 'We could not record your booking. Please contact us to confirm.' }
+    await sendBookingEmails({
+      reference: input.reference,
+      packageName: input.packageName,
+      departureLabel: input.departureLabel,
+      adults: input.adults,
+      children: input.children,
+      rooms: input.rooms,
+      totalAmount: input.totalAmount,
+      leadName: input.leadName,
+      leadEmail: input.leadEmail,
+      leadPhone: input.leadPhone,
+    })
     revalidatePath('/admin/bookings')
     return { ok: true }
   } catch {

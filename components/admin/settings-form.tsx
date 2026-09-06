@@ -73,6 +73,26 @@ export function SettingsForm({ initial }: { initial: SiteSettings }) {
         </div>
       </Section>
 
+      <Section title="Email notifications (Resend)">
+        <div className="grid gap-4">
+          <label className="flex items-center gap-3 rounded-lg border border-border bg-muted/40 px-4 py-3 text-sm font-medium text-secondary">
+            <input type="checkbox" name="emailEnabled" defaultChecked={initial.emailEnabled} className="size-4 accent-[var(--color-primary)]" />
+            Send email notifications for new enquiries and bookings
+          </label>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <Field label="Send from" hint="Verify your own domain in Resend to use a custom address. Default works for testing.">
+              <input name="fromEmail" defaultValue={initial.fromEmail} className="input" placeholder="DevYatra India <onboarding@resend.dev>" />
+            </Field>
+            <Field label="Owner notification email" hint="Where you receive new enquiry/booking alerts.">
+              <input name="ownerEmail" type="email" defaultValue={initial.ownerEmail} className="input" placeholder="you@example.com" />
+            </Field>
+          </div>
+          <p className="rounded-lg bg-amber-100 px-4 py-3 text-xs leading-relaxed text-amber-900">
+            Testing mode: with the default sender <strong>onboarding@resend.dev</strong>, Resend only delivers to the email address that owns your Resend account. Set the owner email above to that address. To email customers at any address, verify your own domain in Resend and update the &ldquo;Send from&rdquo; address.
+          </p>
+        </div>
+      </Section>
+
       <Section title="Registrations & WhatsApp">
         <div className="grid gap-4">
           <Field label="Registrations" hint="One per line.">

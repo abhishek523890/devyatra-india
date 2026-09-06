@@ -13,6 +13,10 @@ export type SiteSettings = {
   hours: string
   registrations: string[]
   whatsappMessage: string
+  // Email (Resend) — all editable from the admin portal.
+  emailEnabled: boolean
+  fromEmail: string
+  ownerEmail: string
 }
 
 /** The static config acts as the default/fallback for every field. */
@@ -26,6 +30,9 @@ export const defaultSettings: SiteSettings = {
   hours: siteConfig.hours,
   registrations: [...siteConfig.registrations],
   whatsappMessage: siteConfig.whatsappMessage,
+  emailEnabled: true,
+  fromEmail: 'DevYatra India <onboarding@resend.dev>',
+  ownerEmail: '',
 }
 
 /**

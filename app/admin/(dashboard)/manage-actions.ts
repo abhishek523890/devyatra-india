@@ -86,6 +86,9 @@ export async function saveSettings(_prev: SettingsState, formData: FormData): Pr
     hours: String(formData.get('hours') ?? '').trim(),
     registrations: lines(formData.get('registrations')),
     whatsappMessage: String(formData.get('whatsappMessage') ?? '').trim() || defaultSettings.whatsappMessage,
+    emailEnabled: formData.get('emailEnabled') === 'on',
+    fromEmail: String(formData.get('fromEmail') ?? '').trim() || defaultSettings.fromEmail,
+    ownerEmail: String(formData.get('ownerEmail') ?? '').trim(),
   }
 
   const supabase = await createClient()
