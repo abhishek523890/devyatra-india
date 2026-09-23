@@ -3,7 +3,7 @@ import { LegalPage } from '@/components/site/legal-page'
 
 export const metadata: Metadata = {
   title: 'Disclaimer',
-  description: 'Important disclaimers regarding travel, content and third-party services on DevYatra India.',
+  description: 'Important disclaimers regarding travel, content and third-party services on Suresh Tour and Travels.',
 }
 
 export default function DisclaimerPage() {

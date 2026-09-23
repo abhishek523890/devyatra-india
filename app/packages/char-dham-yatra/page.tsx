@@ -29,15 +29,15 @@ import { CharDhamEnquiryForm, PHONE_PRIMARY, PHONE_SECONDARY } from '@/component
 import { siteConfig, primaryPhone, secondaryPhone, addressOneLine } from '@/lib/site-config'
 
 export const metadata: Metadata = {
-  title: 'Char Dham Yatra 10 Days from Haridwar | Parth Sarthi Holidays',
+  title: 'Char Dham Yatra 10 Days from Haridwar | Suresh Tour and Travels',
   description:
-    'Char Dham Yatra – Haridwar to Haridwar, 10 Days / 9 Nights covering Yamunotri, Gangotri, Kedarnath and Badrinath. Transport, accommodation and all meals included. Enquire with Parth Sarthi Holidays.',
+    'Char Dham Yatra – Haridwar to Haridwar, 10 Days / 9 Nights covering Yamunotri, Gangotri, Kedarnath and Badrinath. Transport, accommodation and all meals included. Enquire with Suresh Tour and Travels.',
   keywords: [
     'Char Dham Yatra',
     'Char Dham package from Haridwar',
     'Yamunotri Gangotri Kedarnath Badrinath',
     'Char Dham 10 days',
-    'Parth Sarthi Holidays',
+    'Suresh Tour and Travels',
     'Uttarakhand pilgrimage',
   ],
   openGraph: {
@@ -543,7 +543,7 @@ export default function CharDhamYatraPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Why choose us"
-            title="Why travel with Parth Sarthi Holidays"
+            title="Why travel with Suresh Tour and Travels"
           />
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {whyChoose.map((w) => (

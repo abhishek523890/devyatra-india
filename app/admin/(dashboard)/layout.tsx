@@ -17,7 +17,7 @@ export default async function AdminDashboardLayout({ children }: { children: Rea
             <Mountain className="size-5" aria-hidden />
           </span>
           <span className="flex flex-col leading-none">
-            <span className="font-serif text-lg font-semibold">DevYatra</span>
+            <span className="font-serif text-lg font-semibold">Suresh Travels</span>
             <span className="text-[0.65rem] font-medium tracking-[0.2em] text-primary uppercase">Admin</span>
           </span>
         </Link>
@@ -52,7 +52,7 @@ export default async function AdminDashboardLayout({ children }: { children: Rea
         <div className="flex items-center justify-between gap-3 border-b border-border bg-secondary px-4 py-3 text-secondary-foreground lg:hidden">
           <Link href="/admin" className="flex items-center gap-2">
             <Mountain className="size-5 text-primary" aria-hidden />
-            <span className="font-serif text-base font-semibold">DevYatra Admin</span>
+            <span className="font-serif text-base font-semibold">Suresh Travels Admin</span>
           </Link>
           <form action={logout}>
             <button type="submit" aria-label="Sign out" className="rounded-lg p-2 hover:bg-white/10">

@@ -62,7 +62,7 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
                 <Mountain className="size-5" aria-hidden />
               </span>
               <span className="flex flex-col leading-none">
-                <span className="font-serif text-lg font-semibold">DevYatra</span>
+                <span className="font-serif text-lg font-semibold">Suresh Travels</span>
                 <span className="text-[0.65rem] font-medium tracking-[0.2em] text-primary uppercase">India</span>
               </span>
             </Link>
@@ -132,7 +132,7 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
         </div>
 
         <div className="mt-10 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs text-secondary-foreground/60 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} DevYatra India. All rights reserved. Demonstration site.</p>
+          <p>© {new Date().getFullYear()} Suresh Tour and Travels. All rights reserved.</p>
           <p>Prices in INR. Itineraries subject to weather and darshan conditions.</p>
         </div>
       </div>

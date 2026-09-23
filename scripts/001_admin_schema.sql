@@ -1,5 +1,5 @@
 -- =============================================================================
--- DevYatra India — Admin panel schema
+ -- Suresh Tour and Travels — Admin panel schema
 -- Run this ONCE in the Supabase SQL Editor
 -- (Dashboard -> SQL Editor -> New query -> paste -> Run).
 -- Safe to re-run: uses "if not exists" / "or replace" throughout.

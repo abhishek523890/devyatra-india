@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { getPublishedPackages } from '@/lib/packages'
 
-const BASE_URL = 'https://devyatra-india.vercel.app'
+const BASE_URL = 'https://sureshtourandtravel.com'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const packages = await getPublishedPackages()
