@@ -6,7 +6,7 @@ import { siteConfig, primaryPhone, secondaryPhone, addressOneLine } from '@/lib/
 
 export const metadata: Metadata = {
   title: 'Contact Us',
-  description: 'Get in touch with DevYatra India to plan your pilgrimage. Call, WhatsApp or send us a message.',
+  description: 'Get in touch with Suresh Tour and Travels to plan your pilgrimage. Call, WhatsApp or send us a message.',
 }
 
 const details = [

@@ -3,7 +3,7 @@ import { LegalPage } from '@/components/site/legal-page'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
-  description: 'How DevYatra India collects, uses and protects your personal information.',
+  description: 'How Suresh Tour and Travels collects, uses and protects your personal information.',
 }
 
 export default function PrivacyPage() {

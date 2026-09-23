@@ -10,8 +10,8 @@
  */
 
 export const siteConfig = {
-  brandName: 'DevYatra India',
-  legalName: 'Parth Sarthi Holidays',
+  brandName: 'Suresh Tour and Travels',
+  legalName: 'Suresh Tour and Travels',
   tagline: 'Hum Safar Nahi... Yaadon Ka Hissa Banate Hain!',
 
   // Phone numbers. `display` is what users see, `tel` is the dial link,
@@ -44,7 +44,7 @@ export const siteConfig = {
   ],
 
   // Prefilled message for the floating WhatsApp button.
-  whatsappMessage: 'Namaste! I would like to enquire about a DevYatra India pilgrimage package.',
+  whatsappMessage: 'Namaste! I would like to enquire about a Suresh Tour and Travels pilgrimage package.',
 } as const
 
 /** Convenience accessor for the main contact number. */

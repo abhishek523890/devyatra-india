@@ -21,10 +21,10 @@ const fraunces = Fraunces({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://devyatra-india.vercel.app'),
+  metadataBase: new URL('https://sureshtourandtravel.com'),
   title: {
-    default: 'DevYatra India — Sacred Pilgrimage & Spiritual Journeys',
-    template: '%s | DevYatra India',
+    default: 'Suresh Tour and Travels — Sacred Pilgrimage & Spiritual Journeys',
+    template: '%s | Suresh Tour and Travels',
   },
   description:
     'Book curated pilgrimage tours across India — Char Dham, Kedarnath, Badrinath, Vaishno Devi, Varanasi, Ayodhya, Amarnath and custom spiritual journeys with trusted guides and comfortable stays.',
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     'Vaishno Devi',
     'pilgrimage India',
     'spiritual travel',
-    'DevYatra India',
+    'Suresh Tour and Travels',
   ],
   generator: 'v0.app',
   // 👇 ADD THIS
@@ -44,10 +44,10 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    title: 'DevYatra India — Sacred Pilgrimage & Spiritual Journeys',
+    title: 'Suresh Tour and Travels — Sacred Pilgrimage & Spiritual Journeys',
     description:
       'Curated pilgrimage tours across India with trusted guides, comfortable stays and secure booking.',
-    siteName: 'DevYatra India',
+    siteName: 'Suresh Tour and Travels',
   },
 }
 

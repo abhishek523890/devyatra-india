@@ -11,6 +11,6 @@ export default function robots(): MetadataRoute.Robots {
         "/booking/",
       ],
     },
-    sitemap: "https://devyatra-india.vercel.app/sitemap.xml",
+    sitemap: "https://sureshtourandtravel.com/sitemap.xml",
   }
 }

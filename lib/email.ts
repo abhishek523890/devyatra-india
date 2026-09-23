@@ -20,7 +20,7 @@ function shell(title: string, bodyRows: string, footerNote?: string): string {
   return `<!doctype html><html><body style="margin:0;background:#f4f1ea;padding:24px;font-family:Arial,Helvetica,sans-serif;color:#2a2118">
     <div style="max-width:560px;margin:0 auto;background:#ffffff;border-radius:14px;overflow:hidden;border:1px solid #e7e0d4">
       <div style="background:#8a2b1f;padding:20px 24px">
-        <h1 style="margin:0;font-size:18px;color:#fdf6ec">DevYatra India</h1>
+        <h1 style="margin:0;font-size:18px;color:#fdf6ec">Suresh Tour and Travels</h1>
       </div>
       <div style="padding:24px">
         <h2 style="margin:0 0 16px;font-size:18px;color:#8a2b1f">${esc(title)}</h2>
@@ -28,7 +28,7 @@ function shell(title: string, bodyRows: string, footerNote?: string): string {
         ${footerNote ? `<p style="margin:20px 0 0;font-size:13px;color:#6b5f4f;line-height:1.6">${footerNote}</p>` : ''}
       </div>
       <div style="padding:14px 24px;background:#faf6ef;border-top:1px solid #eee5d6;font-size:12px;color:#8a7d6a">
-        Sent automatically by the DevYatra India website.
+        Sent automatically by the Suresh Tour and Travels website.
       </div>
     </div>
   </body></html>`
@@ -106,7 +106,7 @@ export async function sendEnquiryEmails(payload: EnquiryPayload): Promise<void> 
       await resend!.emails.send({
         from: settings.fromEmail,
         to: payload.email,
-        subject: 'We received your enquiry — DevYatra India',
+        subject: 'We received your enquiry — Suresh Tour and Travels',
         html: shell(
           `Namaste ${esc(payload.name)},`,
           row('Your request', label) + detailRows + row('Message', payload.message),
@@ -153,7 +153,7 @@ export async function sendBookingEmails(payload: BookingPayload): Promise<void> 
       await resend!.emails.send({
         from: settings.fromEmail,
         to: payload.leadEmail,
-        subject: `Your booking ${payload.reference} — DevYatra India`,
+        subject: `Your booking ${payload.reference} — Suresh Tour and Travels`,
         html: shell(
           `Namaste ${esc(payload.leadName)},`,
           row('Reference', payload.reference) +

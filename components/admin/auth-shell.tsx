@@ -20,7 +20,7 @@ export function AuthShell({
             <Mountain className="size-5" aria-hidden />
           </span>
           <span className="flex flex-col leading-none">
-            <span className="font-serif text-xl font-semibold text-secondary">DevYatra</span>
+            <span className="font-serif text-xl font-semibold text-secondary">Suresh Travels</span>
             <span className="text-[0.65rem] font-medium tracking-[0.2em] text-primary uppercase">India Admin</span>
           </span>
         </Link>

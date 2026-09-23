@@ -1,4 +1,4 @@
-// Domain types for DevYatra India.
+// Domain types for Suresh Tour and Travels.
 // These mirror the intended Supabase tables so the UI can be wired to a real
 // database later without restructuring components.
 
