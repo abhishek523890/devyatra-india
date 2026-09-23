@@ -3,7 +3,8 @@ import { LegalPage } from '@/components/site/legal-page'
 
 export const metadata: Metadata = {
   title: 'Terms & Conditions',
-  description: 'The terms and conditions governing bookings and travel with Suresh Tour and Travels.',
+  description: 'The terms and conditions governing bookings and travel with Suresh Tour and Travel.',
+  alternates: { canonical: '/terms' },
 }
 
 export default function TermsPage() {
@@ -42,7 +43,7 @@ export default function TermsPage() {
         {
           heading: 'Liability',
           paragraphs: [
-            'Suresh Tour and Travels acts as a facilitator of travel services. We are not liable for delays, losses or damages arising from circumstances beyond our reasonable control. Travel insurance is strongly recommended.',
+            'Suresh Tour and Travel acts as a facilitator of travel services. We are not liable for delays, losses or damages arising from circumstances beyond our reasonable control. Travel insurance is strongly recommended.',
           ],
         },
       ]}
