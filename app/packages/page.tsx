@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: 'All Pilgrimage Packages',
   description:
     'Browse and filter pilgrimage tour packages — Char Dham, Kedarnath, Badrinath, Vaishno Devi, Varanasi, Ayodhya, Amarnath and more.',
+  alternates: { canonical: '/packages' },
 }
 
 export default async function PackagesPage({
