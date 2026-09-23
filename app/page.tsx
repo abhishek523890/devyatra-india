@@ -1,4 +1,10 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  alternates: { canonical: '/' },
+}
+
 import { ArrowRight, CalendarDays, ShieldPlus, PhoneCall } from 'lucide-react'
 import { Hero } from '@/components/home/hero'
 import { WhyChoose } from '@/components/home/why-choose'
