@@ -49,7 +49,7 @@ export function SiteHeader({ phone }: { phone?: PhoneProp }) {
       )}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-2" aria-label="Suresh Tour and Travels home">
+        <Link href="/" className="flex items-center gap-2" aria-label="Suresh Tour and Travel home">
           <span className="flex size-9 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
             <Mountain className="size-5" aria-hidden />
           </span>
