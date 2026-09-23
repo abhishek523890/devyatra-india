@@ -62,7 +62,7 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
                 <Mountain className="size-5" aria-hidden />
               </span>
               <span className="flex flex-col leading-none">
-                <span className="font-serif text-lg font-semibold">Suresh Travels</span>
+                <span className="font-serif text-lg font-semibold">Suresh Tour and Travel</span>
                 <span className="text-[0.65rem] font-medium tracking-[0.2em] text-primary uppercase">India</span>
               </span>
             </Link>
