@@ -3,7 +3,8 @@ import { LegalPage } from '@/components/site/legal-page'
 
 export const metadata: Metadata = {
   title: 'Cancellation & Refund Policy',
-  description: 'Suresh Tour and Travels cancellation and refund terms for pilgrimage bookings.',
+  description: 'Suresh Tour and Travel cancellation and refund terms for pilgrimage bookings.',
+  alternates: { canonical: '/cancellation-policy' },
 }
 
 export default function CancellationPolicyPage() {
@@ -29,7 +30,7 @@ export default function CancellationPolicyPage() {
           ],
         },
         {
-          heading: 'Cancellation by Suresh Tour and Travels',
+          heading: 'Cancellation by Suresh Tour and Travel',
           paragraphs: [
             'If we cancel a departure for reasons within our control, you will be offered an alternative date or a full refund. For cancellations due to weather, natural events or government advisories, we will offer a rescheduling option or a refund net of unrecoverable costs.',
           ],
