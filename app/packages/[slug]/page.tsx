@@ -43,10 +43,10 @@ export async function generateMetadata({
     }
   }
 
-  const title = `${pkg.name} Package 2026`
+  const title = `${pkg.name} Package`
   const description =
     pkg.shortDescription ||
-    `Explore ${pkg.name} with ${'Suresh Tour and Travels'}. View itinerary, accommodation, transport, inclusions, departures and pricing.`
+    `Explore ${pkg.name} with Suresh Tour and Travel. View itinerary, accommodation, transport, inclusions, departures and pricing.`
   const canonicalUrl = `${SITE_URL}/packages/${pkg.slug}`
 
   return {
@@ -58,7 +58,7 @@ export async function generateMetadata({
       `${pkg.name} yatra`,
       `${pkg.name} tour`,
       'pilgrimage packages India',
-      'Suresh Tour and Travels',
+      'Suresh Tour and Travel',
     ],
     alternates: { canonical: canonicalUrl },
     openGraph: {
@@ -66,7 +66,7 @@ export async function generateMetadata({
       url: canonicalUrl,
       title,
       description,
-      siteName: 'Suresh Tour and Travels',
+      siteName: 'Suresh Tour and Travel',
       locale: 'en_IN',
       images: pkg.coverImage
         ? [{ url: pkg.coverImage, width: 1200, height: 630, alt: pkg.name }]
@@ -127,7 +127,7 @@ export default async function PackageDetailPage({
     },
     provider: {
       '@type': 'TravelAgency',
-      name: 'Suresh Tour and Travels',
+      name: 'Suresh Tour and Travel',
       url: SITE_URL,
     },
   }
