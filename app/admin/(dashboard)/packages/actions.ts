@@ -163,6 +163,15 @@ export async function updatePackage(
   const { columns, data } = buildPackage(formData, id, slug)
 
   const supabase = await createClient()
+  const { data: existing, error: existingError } = await supabase
+    .from('packages')
+    .select('slug')
+    .eq('id', id)
+    .maybeSingle()
+  if (existingError) return { error: existingError.message }
+  if (!existing) return { error: 'Package not found.' }
+
+  const oldSlug = existing.slug as string
   const { error } = await supabase.from('packages').update({ ...columns, data }).eq('id', id)
   if (error) {
     if (error.code === '23505') return { error: `The URL slug "${slug}" is already in use. Choose another.` }
@@ -171,7 +180,8 @@ export async function updatePackage(
 
   revalidatePath('/admin/packages')
   revalidatePath('/packages')
-  revalidatePath(`/packages/${slug}`)
+  revalidatePath(`/packages/${oldSlug}`)
+  if (oldSlug !== slug) revalidatePath(`/packages/${slug}`)
   redirect('/admin/packages')
 }
 
@@ -181,8 +191,17 @@ export async function deletePackage(formData: FormData): Promise<void> {
   if (!id) return
 
   const supabase = await createClient()
-  await supabase.from('packages').delete().eq('id', id)
+  const { data: existing, error: existingError } = await supabase
+    .from('packages')
+    .select('slug')
+    .eq('id', id)
+    .maybeSingle()
+  if (existingError || !existing) return
+
+  const { error } = await supabase.from('packages').delete().eq('id', id)
+  if (error) return
 
   revalidatePath('/admin/packages')
   revalidatePath('/packages')
+  revalidatePath(`/packages/${existing.slug}`)
 }

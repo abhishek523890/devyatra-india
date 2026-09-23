@@ -1,4 +1,4 @@
-// Domain types for Suresh Tour and Travels.
+// Domain types for Suresh Tour and Travel.
 // These mirror the intended Supabase tables so the UI can be wired to a real
 // database later without restructuring components.
 

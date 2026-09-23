@@ -5,13 +5,13 @@
  *  To change your address, phone numbers, email, hours or
  *  registrations across the WHOLE website, edit ONLY this file.
  *  Everything (header, footer, contact page, WhatsApp button,
- *  Char Dham page) reads its details from here.
+ *  package pages) read its details from here.
  * ─────────────────────────────────────────────────────────────
  */
 
 export const siteConfig = {
-  brandName: 'Suresh Tour and Travels',
-  legalName: 'Suresh Tour and Travels',
+  brandName: 'Suresh Tour and Travel',
+  legalName: 'Suresh Tour and Travel',
   tagline: 'Hum Safar Nahi... Yaadon Ka Hissa Banate Hain!',
 
   // Phone numbers. `display` is what users see, `tel` is the dial link,
@@ -44,7 +44,7 @@ export const siteConfig = {
   ],
 
   // Prefilled message for the floating WhatsApp button.
-  whatsappMessage: 'Namaste! I would like to enquire about a Suresh Tour and Travels pilgrimage package.',
+  whatsappMessage: 'Namaste! I would like to enquire about a Suresh Tour and Travel pilgrimage package.',
 } as const
 
 /** Convenience accessor for the main contact number. */

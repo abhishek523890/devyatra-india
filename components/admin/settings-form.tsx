@@ -81,7 +81,7 @@ export function SettingsForm({ initial }: { initial: SiteSettings }) {
           </label>
           <div className="grid gap-4 sm:grid-cols-2">
             <Field label="Send from" hint="Verify your own domain in Resend to use a custom address. Default works for testing.">
-              <input name="fromEmail" defaultValue={initial.fromEmail} className="input" placeholder="Suresh Tour and Travels <onboarding@resend.dev>" />
+              <input name="fromEmail" defaultValue={initial.fromEmail} className="input" placeholder="Suresh Tour and Travel <onboarding@resend.dev>" />
             </Field>
             <Field label="Owner notification email" hint="Where you receive new enquiry/booking alerts.">
               <input name="ownerEmail" type="email" defaultValue={initial.ownerEmail} className="input" placeholder="you@example.com" />

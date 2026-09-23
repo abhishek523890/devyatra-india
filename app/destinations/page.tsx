@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: 'Sacred Destinations',
   description:
     'Explore the sacred pilgrimage destinations of India — from the Himalayan dhams of Kedarnath and Badrinath to the ghats of Varanasi and the cave shrine of Vaishno Devi.',
+  alternates: { canonical: '/destinations' },
 }
 
 export default function DestinationsPage() {

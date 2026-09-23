@@ -24,7 +24,7 @@ export async function generateMetadata({
   }
 
   const title = `${destination.name} Travel Guide & Yatra Packages`
-  const description = `${destination.tagline}. Explore travel information, best time to visit and available pilgrimage journeys with Suresh Tour and Travels.`
+  const description = `${destination.tagline}. Explore travel information, best time to visit and available pilgrimage journeys with Suresh Tour and Travel.`
   const canonicalUrl = `${SITE_URL}/destinations/${destination.slug}`
 
   return {
@@ -43,7 +43,7 @@ export async function generateMetadata({
       url: canonicalUrl,
       title,
       description,
-      siteName: 'Suresh Tour and Travels',
+      siteName: 'Suresh Tour and Travel',
       locale: 'en_IN',
       images: destination.image
         ? [{ url: destination.image, width: 1200, height: 630, alt: destination.name }]

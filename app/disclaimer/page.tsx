@@ -3,7 +3,8 @@ import { LegalPage } from '@/components/site/legal-page'
 
 export const metadata: Metadata = {
   title: 'Disclaimer',
-  description: 'Important disclaimers regarding travel, content and third-party services on Suresh Tour and Travels.',
+  description: 'Important disclaimers regarding travel, content and third-party services on Suresh Tour and Travel.',
+  alternates: { canonical: '/disclaimer' },
 }
 
 export default function DisclaimerPage() {

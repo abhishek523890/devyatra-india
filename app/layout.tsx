@@ -21,7 +21,7 @@ const fraunces = Fraunces({
 })
 
 const SITE_URL = 'https://sureshtourandtravel.com'
-const SITE_NAME = 'Suresh Tour and Travels'
+const SITE_NAME = 'Suresh Tour and Travel'
 const SITE_DESCRIPTION =
   'Pilgrimage and spiritual travel packages across India, including Char Dham, Kedarnath, Badrinath, Vaishno Devi, Varanasi, Ayodhya and custom journeys.'
 
@@ -44,9 +44,6 @@ export const metadata: Metadata = {
   generator: 'Next.js',
   verification: {
     google: 'DUMx6bkF7aD-E7KP68g4iZ5iHIivC6lB7hTJyqIZenw',
-  },
-  alternates: {
-    canonical: SITE_URL,
   },
   openGraph: {
     type: 'website',

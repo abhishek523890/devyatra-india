@@ -6,7 +6,8 @@ import { faqs } from '@/lib/data'
 
 export const metadata: Metadata = {
   title: 'Frequently Asked Questions',
-  description: 'Answers to common questions about booking, payments, cancellations, fitness and travel with Suresh Tour and Travels.',
+  description: 'Answers to common questions about booking, payments, cancellations, fitness and travel with Suresh Tour and Travel.',
+  alternates: { canonical: '/faq' },
 }
 
 export default function FaqPage() {

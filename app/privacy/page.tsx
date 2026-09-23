@@ -3,7 +3,8 @@ import { LegalPage } from '@/components/site/legal-page'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
-  description: 'How Suresh Tour and Travels collects, uses and protects your personal information.',
+  description: 'How Suresh Tour and Travel collects, uses and protects your personal information.',
+  alternates: { canonical: '/privacy' },
 }
 
 export default function PrivacyPage() {

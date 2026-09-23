@@ -5,9 +5,10 @@ import { PageHero } from '@/components/site/page-hero'
 import { ShieldCheck, HeartHandshake, Mountain, Users } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'About Suresh Tour and Travels',
+  title: 'About Suresh Tour and Travel',
   description:
-    'Suresh Tour and Travels crafts guided spiritual pilgrimages across India — Char Dham, Do Dham, Vaishno Devi and more — with safety, comfort and devotion at the heart of every journey.',
+    'Suresh Tour and Travel crafts guided spiritual pilgrimages across India — Char Dham, Do Dham, Vaishno Devi and more — with safety, comfort and devotion at the heart of every journey.',
+  alternates: { canonical: '/about' },
 }
 
 const values = [
@@ -29,7 +30,7 @@ export default function AboutPage() {
     <>
       <PageHero
         title="Journeys of devotion, guided with care"
-        description="For over a decade, Suresh Tour and Travels has helped families walk the sacred routes of the subcontinent with confidence and calm."
+        description="For over a decade, Suresh Tour and Travel has helped families walk the sacred routes of the subcontinent with confidence and calm."
         breadcrumbs={[{ href: '/', label: 'Home' }, { label: 'About' }]}
       />
 
@@ -39,7 +40,7 @@ export default function AboutPage() {
             <h2 className="font-serif text-3xl font-semibold text-foreground text-balance">Our story</h2>
             <div className="mt-4 space-y-4 text-base leading-relaxed text-muted-foreground">
               <p>
-                Suresh Tour and Travels began with a simple belief: a pilgrimage should lift the spirit, not exhaust the body.
+                Suresh Tour and Travel began with a simple belief: a pilgrimage should lift the spirit, not exhaust the body.
                 What started as a handful of Char Dham trips has grown into a trusted name for spiritual travel across
                 the Himalayas and the Ganga plains.
               </p>

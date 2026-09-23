@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: 'Travel Guides',
   description:
     'Practical guides, tips and cultural notes to help you prepare for your pilgrimage across India.',
+  alternates: { canonical: '/guides' },
 }
 
 export default function GuidesPage() {

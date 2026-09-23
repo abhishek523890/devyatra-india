@@ -31,7 +31,7 @@ export const defaultSettings: SiteSettings = {
   registrations: [...siteConfig.registrations],
   whatsappMessage: siteConfig.whatsappMessage,
   emailEnabled: true,
-  fromEmail: 'Suresh Tour and Travels <onboarding@resend.dev>',
+  fromEmail: 'Suresh Tour and Travel <onboarding@resend.dev>',
   ownerEmail: '',
 }
 
