@@ -45,9 +45,6 @@ export const metadata: Metadata = {
   verification: {
     google: 'DUMx6bkF7aD-E7KP68g4iZ5iHIivC6lB7hTJyqIZenw',
   },
-  alternates: {
-    canonical: SITE_URL,
-  },
   openGraph: {
     type: 'website',
     url: SITE_URL,
