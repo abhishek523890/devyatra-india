@@ -22,7 +22,7 @@ export async function generateMetadata({
   const post = getBlogBySlug(slug)
   if (!post) return { title: 'Guide Not Found', robots: { index: false, follow: false } }
 
-  const title = `${post.title} | Suresh Tour and Travels`
+  const title = `${post.title} | Suresh Tour and Travel`
   const description = post.excerpt
   const canonicalUrl = `${SITE_URL}/guides/${post.slug}`
 
@@ -36,7 +36,7 @@ export async function generateMetadata({
       url: canonicalUrl,
       title,
       description,
-      siteName: 'Suresh Tour and Travels',
+      siteName: 'Suresh Tour and Travel',
       locale: 'en_IN',
       publishedTime: post.date,
       images: post.image ? [{ url: post.image, width: 1200, height: 630, alt: post.title }] : [],
@@ -67,8 +67,8 @@ export default async function GuideDetailPage({
     datePublished: post.date,
     mainEntityOfPage: `${SITE_URL}/guides/${post.slug}`,
     image: post.image ? [post.image] : undefined,
-    author: { '@type': 'Organization', name: 'Suresh Tour and Travels' },
-    publisher: { '@type': 'Organization', name: 'Suresh Tour and Travels', url: SITE_URL },
+    author: { '@type': 'Organization', name: 'Suresh Tour and Travel' },
+    publisher: { '@type': 'Organization', name: 'Suresh Tour and Travel', url: SITE_URL },
   }
 
   return (
