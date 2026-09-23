@@ -54,11 +54,11 @@ export async function getPublishedPackages(): Promise<Package[]> {
       .order('sort_order', { ascending: true })
       .order('created_at', { ascending: false })
     if (error || !data || data.length === 0) {
-      return samplePackages
+      return process.env.NODE_ENV === 'development' ? samplePackages : []
     }
     return (data as PackageRow[]).map(rowToPackage)
   } catch {
-    return samplePackages
+    return process.env.NODE_ENV === 'development' ? samplePackages : []
   }
 }
 
@@ -73,11 +73,15 @@ export async function getPublishedPackageBySlug(slug: string): Promise<Package |
       .eq('status', 'published')
       .maybeSingle()
     if (error || !data) {
-      return samplePackages.find((p) => p.slug === slug) ?? null
+      return process.env.NODE_ENV === 'development'
+        ? samplePackages.find((p) => p.slug === slug) ?? null
+        : null
     }
     return rowToPackage(data as PackageRow)
   } catch {
-    return samplePackages.find((p) => p.slug === slug) ?? null
+    return process.env.NODE_ENV === 'development'
+      ? samplePackages.find((p) => p.slug === slug) ?? null
+      : null
   }
 }
 

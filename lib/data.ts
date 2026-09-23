@@ -68,6 +68,18 @@ export const destinations: Destination[] = [
     featured: true,
   },
   {
+    slug: 'amarnath',
+    name: 'Amarnath',
+    state: 'Jammu & Kashmir',
+    region: 'Himalayan Pilgrimage',
+    tagline: 'A high-altitude pilgrimage to the Amarnath cave shrine',
+    description:
+      'Amarnath is a seasonal pilgrimage destination in the Himalayas of Jammu & Kashmir. The annual yatra is subject to official registration, health requirements, weather and route conditions.',
+    image: '/images/amarnath.png',
+    bestTime: 'July – August',
+    featured: false,
+  },
+  {
     slug: 'vaishno-devi',
     name: 'Vaishno Devi',
     state: 'Jammu & Kashmir',
@@ -483,8 +495,8 @@ export const packages: Package[] = [
     shortDescription: 'A guided 6-day high-altitude pilgrimage to the Amarnath cave.',
     detailedDescription:
       'Undertake the revered Amarnath Yatra to the ice-lingam cave shrine. This challenging high-altitude journey is fully supported with acclimatisation, medical checks and experienced guides. Subject to annual yatra permits and weather.',
-    destinationSlug: 'kedarnath',
-    category: 'Char Dham',
+    destinationSlug: 'amarnath',
+    category: 'Himalayan Pilgrimage',
     days: 6,
     nights: 5,
     startLocation: 'Srinagar',

@@ -25,10 +25,10 @@ export default async function HomePage() {
     .slice(0, 4)
 
   const trustStats = [
-    { value: '12,000+', label: 'Pilgrims served' },
-    { value: '25+', label: 'Sacred destinations' },
-    { value: '4.8/5', label: 'Average rating' },
-    { value: '10+ yrs', label: 'Guiding experience' },
+    { value: 'India-wide', label: 'Pilgrimage destinations' },
+    { value: 'Group & private', label: 'Journey options' },
+    { value: 'Custom', label: 'Itineraries available' },
+    { value: 'Request-based', label: 'Booking confirmation' },
   ]
 
   return (
@@ -70,7 +70,7 @@ export default async function HomePage() {
       {/* Popular packages */}
       <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-end justify-between gap-4">
-          <SectionHeading eyebrow="Popular yatras" title="Most-booked pilgrimage packages" align="left" />
+          <SectionHeading eyebrow="Featured yatras" title="Pilgrimage packages" align="left" />
           <Link
             href="/packages"
             className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
@@ -115,7 +115,7 @@ export default async function HomePage() {
         <SectionHeading
           eyebrow="Fixed departures"
           title="Upcoming group departures"
-          description="Join a scheduled group tour on these confirmed dates. Limited seats per departure."
+          description="Explore scheduled group departures and check current seat availability for each journey."
         />
         <div className="mt-10 overflow-hidden rounded-2xl border border-border">
           <table className="hidden w-full border-collapse text-left text-sm md:table">
@@ -216,8 +216,6 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-
-      <Testimonials />
 
       {/* FAQ */}
       <section className="mx-auto max-w-3xl px-4 pb-24 sm:px-6 lg:px-8">

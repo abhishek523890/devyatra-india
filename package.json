@@ -1,5 +1,5 @@
 {
-  "name": "my-project",
+  "name": "suresh-tour-and-travels",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -31,5 +31,6 @@
     "postcss": "^8.5",
     "tailwindcss": "^4.3.3",
     "typescript": "5.7.3"
-  }
+  },
+  "description": "Pilgrimage and spiritual travel packages across India."
 }
