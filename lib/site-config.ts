@@ -5,7 +5,7 @@
  *  To change your address, phone numbers, email, hours or
  *  registrations across the WHOLE website, edit ONLY this file.
  *  Everything (header, footer, contact page, WhatsApp button,
- *  Char Dham page) reads its details from here.
+ *  package pages) read its details from here.
  * ─────────────────────────────────────────────────────────────
  */
 
