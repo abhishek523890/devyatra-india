@@ -54,7 +54,7 @@ export function SiteHeader({ phone }: { phone?: PhoneProp }) {
             <Mountain className="size-5" aria-hidden />
           </span>
           <span className="flex flex-col leading-none">
-            <span className="font-serif text-lg font-semibold text-secondary">Suresh Travels</span>
+            <span className="font-serif text-lg font-semibold text-secondary">Suresh Tour and Travel</span>
             <span className="text-[0.65rem] font-medium tracking-[0.2em] text-primary uppercase">India</span>
           </span>
         </Link>
