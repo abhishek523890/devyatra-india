@@ -26,6 +26,8 @@ import { getDestinationBySlug } from '@/lib/data'
 import { getPublishedPackageBySlug, getRelatedPublishedPackages } from '@/lib/packages'
 import { formatDate } from '@/lib/format'
 
+const SITE_URL = 'https://sureshtourandtravel.com'
+
 export async function generateMetadata({
   params,
 }: {
@@ -33,15 +35,50 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params
   const pkg = await getPublishedPackageBySlug(slug)
-  if (!pkg) return { title: 'Package not found' }
+
+  if (!pkg) {
+    return {
+      title: 'Package Not Found',
+      robots: { index: false, follow: false },
+    }
+  }
+
+  const title = `${pkg.name} Package 2026`
+  const description =
+    pkg.shortDescription ||
+    `Explore ${pkg.name} with ${'Suresh Tour and Travels'}. View itinerary, accommodation, transport, inclusions, departures and pricing.`
+  const canonicalUrl = `${SITE_URL}/packages/${pkg.slug}`
+
   return {
-    title: pkg.name,
-    description: pkg.shortDescription,
+    title,
+    description,
+    keywords: [
+      pkg.name,
+      `${pkg.name} package`,
+      `${pkg.name} yatra`,
+      `${pkg.name} tour`,
+      'pilgrimage packages India',
+      'Suresh Tour and Travels',
+    ],
+    alternates: { canonical: canonicalUrl },
     openGraph: {
-      title: pkg.name,
-      description: pkg.shortDescription,
-      images: [{ url: pkg.coverImage }],
+      type: 'website',
+      url: canonicalUrl,
+      title,
+      description,
+      siteName: 'Suresh Tour and Travels',
+      locale: 'en_IN',
+      images: pkg.coverImage
+        ? [{ url: pkg.coverImage, width: 1200, height: 630, alt: pkg.name }]
+        : [],
     },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: pkg.coverImage ? [pkg.coverImage] : [],
+    },
+    robots: { index: true, follow: true },
   }
 }
 
@@ -69,8 +106,35 @@ export default async function PackageDetailPage({
     { icon: Utensils, label: 'Meals', value: pkg.mealsIncluded },
   ]
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'TouristTrip',
+    name: pkg.name,
+    description: pkg.shortDescription,
+    url: `${SITE_URL}/packages/${pkg.slug}`,
+    touristType: 'Pilgrims',
+    itinerary: pkg.itinerary.map((day) => ({
+      '@type': 'TouristAttraction',
+      name: day.title,
+      description: day.description,
+    })),
+    offers: {
+      '@type': 'Offer',
+      priceCurrency: 'INR',
+      price: pkg.discountedPrice || pkg.basePrice,
+      availability: 'https://schema.org/InStock',
+      url: `${SITE_URL}/packages/${pkg.slug}`,
+    },
+    provider: {
+      '@type': 'TravelAgency',
+      name: 'Suresh Tour and Travels',
+      url: SITE_URL,
+    },
+  }
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       {/* Breadcrumb + title band */}
       <section className="border-b border-border bg-secondary pt-24 pb-8 text-secondary-foreground">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -103,11 +167,9 @@ export default async function PackageDetailPage({
 
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[1fr_380px]">
-          {/* Main column */}
           <div className="flex flex-col gap-10">
             <Gallery images={pkg.gallery} alt={pkg.name} />
 
-            {/* Quick facts */}
             <div className="grid gap-4 rounded-2xl border border-border bg-card p-6 sm:grid-cols-2 lg:grid-cols-3">
               {facts.map((f) => (
                 <div key={f.label} className="flex items-start gap-3">
@@ -122,7 +184,6 @@ export default async function PackageDetailPage({
               ))}
             </div>
 
-            {/* Overview */}
             <section>
               <h2 className="font-serif text-2xl font-semibold text-secondary">Overview</h2>
               <p className="mt-3 leading-relaxed text-muted-foreground">{pkg.detailedDescription}</p>
@@ -136,7 +197,6 @@ export default async function PackageDetailPage({
               </ul>
             </section>
 
-            {/* Itinerary */}
             <section>
               <h2 className="font-serif text-2xl font-semibold text-secondary">Day-by-day itinerary</h2>
               <ol className="mt-5 flex flex-col gap-4">
@@ -155,7 +215,6 @@ export default async function PackageDetailPage({
               </ol>
             </section>
 
-            {/* Inclusions / Exclusions */}
             <section>
               <h2 className="font-serif text-2xl font-semibold text-secondary">What&apos;s included</h2>
               <div className="mt-5">
@@ -163,7 +222,6 @@ export default async function PackageDetailPage({
               </div>
             </section>
 
-            {/* Logistics */}
             <section className="grid gap-4 sm:grid-cols-2">
               {[
                 { icon: Bed, title: 'Accommodation', text: pkg.accommodation },
@@ -181,7 +239,6 @@ export default async function PackageDetailPage({
               ))}
             </section>
 
-            {/* Departures */}
             <section>
               <h2 className="font-serif text-2xl font-semibold text-secondary">Available departures</h2>
               <ul className="mt-5 flex flex-col gap-3">
@@ -199,7 +256,6 @@ export default async function PackageDetailPage({
               </ul>
             </section>
 
-            {/* FAQ */}
             {pkg.faqs.length > 0 && (
               <section>
                 <h2 className="font-serif text-2xl font-semibold text-secondary">Frequently asked questions</h2>
@@ -210,14 +266,12 @@ export default async function PackageDetailPage({
             )}
           </div>
 
-          {/* Sidebar */}
           <aside className="lg:sticky lg:top-20 lg:self-start">
             <BookingWidget pkg={pkg} initialDepartureId={departure} />
           </aside>
         </div>
       </div>
 
-      {/* Related */}
       {related.length > 0 && (
         <section className="bg-muted/40">
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
