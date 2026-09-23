@@ -6,6 +6,8 @@ import { CalendarDays, MapPin, ArrowRight } from 'lucide-react'
 import { PackageCard } from '@/components/site/package-card'
 import { getDestinationBySlug, getPackagesByDestination, destinations } from '@/lib/data'
 
+const SITE_URL = 'https://sureshtourandtravel.com'
+
 export function generateStaticParams() {
   return destinations.map((d) => ({ slug: d.slug }))
 }
@@ -17,10 +19,42 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params
   const destination = getDestinationBySlug(slug)
-  if (!destination) return { title: 'Destination not found' }
+  if (!destination) {
+    return { title: 'Destination Not Found', robots: { index: false, follow: false } }
+  }
+
+  const title = `${destination.name} Travel Guide & Yatra Packages`
+  const description = `${destination.tagline}. Explore travel information, best time to visit and available pilgrimage journeys with Suresh Tour and Travels.`
+  const canonicalUrl = `${SITE_URL}/destinations/${destination.slug}`
+
   return {
-    title: destination.name,
-    description: destination.tagline,
+    title,
+    description,
+    keywords: [
+      destination.name,
+      `${destination.name} yatra`,
+      `${destination.name} travel guide`,
+      `${destination.name} tour package`,
+      'pilgrimage destinations India',
+    ],
+    alternates: { canonical: canonicalUrl },
+    openGraph: {
+      type: 'website',
+      url: canonicalUrl,
+      title,
+      description,
+      siteName: 'Suresh Tour and Travels',
+      locale: 'en_IN',
+      images: destination.image
+        ? [{ url: destination.image, width: 1200, height: 630, alt: destination.name }]
+        : [],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: destination.image ? [destination.image] : [],
+    },
   }
 }
 
@@ -35,8 +69,21 @@ export default async function DestinationDetailPage({
 
   const relatedPackages = getPackagesByDestination(slug)
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'TouristDestination',
+    name: destination.name,
+    description: destination.description,
+    url: `${SITE_URL}/destinations/${destination.slug}`,
+    containedInPlace: {
+      '@type': 'AdministrativeArea',
+      name: destination.state,
+    },
+  }
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <section className="relative flex min-h-[60vh] items-end overflow-hidden">
         <Image
           src={destination.image || '/placeholder.svg'}
@@ -49,9 +96,7 @@ export default async function DestinationDetailPage({
         <div className="absolute inset-0 bg-gradient-to-t from-secondary/95 via-secondary/40 to-secondary/20" />
         <div className="relative mx-auto w-full max-w-6xl px-4 pb-12">
           <nav aria-label="Breadcrumb" className="mb-4 text-sm text-secondary-foreground/80">
-            <Link href="/destinations" className="hover:text-primary">
-              Destinations
-            </Link>
+            <Link href="/destinations" className="hover:text-primary">Destinations</Link>
             <span className="mx-1">/</span>
             <span className="text-secondary-foreground">{destination.name}</span>
           </nav>
@@ -86,9 +131,7 @@ export default async function DestinationDetailPage({
                 <MapPin className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden />
                 <div>
                   <dt className="font-medium text-foreground">Region</dt>
-                  <dd className="text-muted-foreground">
-                    {destination.region}, {destination.state}
-                  </dd>
+                  <dd className="text-muted-foreground">{destination.region}, {destination.state}</dd>
                 </div>
               </div>
             </dl>
@@ -103,10 +146,7 @@ export default async function DestinationDetailPage({
               </h2>
               <p className="mt-1 text-muted-foreground">Guided packages that include this destination.</p>
             </div>
-            <Link
-              href="/packages"
-              className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
-            >
+            <Link href="/packages" className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline">
               View all packages
               <ArrowRight className="size-4" aria-hidden />
             </Link>
@@ -120,13 +160,8 @@ export default async function DestinationDetailPage({
             </div>
           ) : (
             <div className="rounded-2xl border border-dashed border-border bg-muted/40 p-10 text-center">
-              <p className="text-muted-foreground">
-                No scheduled packages for this destination yet. Reach out for a custom itinerary.
-              </p>
-              <Link
-                href="/custom-tour"
-                className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
-              >
+              <p className="text-muted-foreground">No scheduled packages for this destination yet. Reach out for a custom itinerary.</p>
+              <Link href="/custom-tour" className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline">
                 Plan a custom tour
                 <ArrowRight className="size-4" aria-hidden />
               </Link>
