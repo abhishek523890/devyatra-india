@@ -6,6 +6,7 @@ import { getPublishedPackageBySlug } from '@/lib/packages'
 export const metadata: Metadata = {
   title: 'Complete your booking',
   description: 'Enter traveller details, review your itinerary and reserve your pilgrimage seat.',
+  robots: { index: false, follow: true },
 }
 
 export default async function BookingPage({
