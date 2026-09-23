@@ -14,7 +14,7 @@ export function WhyChoose() {
   return (
     <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
       <SectionHeading
-        eyebrow="Why Suresh Tour and Travels"
+        eyebrow="Why Suresh Tour and Travel"
         title="A yatra you can trust, end to end"
         description="We handle the logistics, safety and comfort so you can focus on the darshan and the journey within."
       />
