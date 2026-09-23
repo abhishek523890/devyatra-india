@@ -20,14 +20,18 @@ const fraunces = Fraunces({
   display: 'swap',
 })
 
+const SITE_URL = 'https://sureshtourandtravel.com'
+const SITE_NAME = 'Suresh Tour and Travels'
+const SITE_DESCRIPTION =
+  'Pilgrimage and spiritual travel packages across India, including Char Dham, Kedarnath, Badrinath, Vaishno Devi, Varanasi, Ayodhya and custom journeys.'
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://sureshtourandtravel.com'),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Suresh Tour and Travels — Sacred Pilgrimage & Spiritual Journeys',
-    template: '%s | Suresh Tour and Travels',
+    default: `${SITE_NAME} — Sacred Pilgrimage & Spiritual Journeys`,
+    template: `%s | ${SITE_NAME}`,
   },
-  description:
-    'Book curated pilgrimage tours across India — Char Dham, Kedarnath, Badrinath, Vaishno Devi, Varanasi, Ayodhya, Amarnath and custom spiritual journeys with trusted guides and comfortable stays.',
+  description: SITE_DESCRIPTION,
   keywords: [
     'Char Dham Yatra',
     'Kedarnath tour',
@@ -35,19 +39,31 @@ export const metadata: Metadata = {
     'Vaishno Devi',
     'pilgrimage India',
     'spiritual travel',
-    'Suresh Tour and Travels',
+    SITE_NAME,
   ],
-  generator: 'v0.app',
-  // 👇 ADD THIS
+  generator: 'Next.js',
   verification: {
     google: 'DUMx6bkF7aD-E7KP68g4iZ5iHIivC6lB7hTJyqIZenw',
   },
+  alternates: {
+    canonical: SITE_URL,
+  },
   openGraph: {
     type: 'website',
-    title: 'Suresh Tour and Travels — Sacred Pilgrimage & Spiritual Journeys',
-    description:
-      'Curated pilgrimage tours across India with trusted guides, comfortable stays and secure booking.',
-    siteName: 'Suresh Tour and Travels',
+    url: SITE_URL,
+    title: `${SITE_NAME} — Sacred Pilgrimage & Spiritual Journeys`,
+    description: SITE_DESCRIPTION,
+    siteName: SITE_NAME,
+    locale: 'en_IN',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${SITE_NAME} — Sacred Pilgrimage & Spiritual Journeys`,
+    description: SITE_DESCRIPTION,
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 }
 
@@ -80,4 +96,3 @@ export default async function RootLayout({
     </html>
   )
 }
-
