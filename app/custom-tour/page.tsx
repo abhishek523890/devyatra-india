@@ -6,8 +6,8 @@ import { CalendarDays, Route, HeartHandshake } from 'lucide-react'
 export const metadata: Metadata = {
   title: 'Plan a Custom Pilgrimage',
   description:
-    'Tell us your destinations, dates and budget and Suresh Tour and Travels will design a personalised spiritual itinerary just for you.',
-}
+    'Tell us your destinations, dates and budget and Suresh Tour and Travel will design a personalised spiritual itinerary just for you.',
+  alternates: { canonical: '/custom-tour' },
 
 const steps = [
   { icon: Route, title: 'Share your vision', text: 'Pick the shrines you want to visit and your travel style.' },
