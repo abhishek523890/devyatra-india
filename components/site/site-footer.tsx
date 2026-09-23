@@ -45,7 +45,7 @@ const columns = [
       { href: '/faq', label: 'FAQ' },
       { href: '/privacy', label: 'Privacy Policy' },
       { href: '/terms', label: 'Terms & Conditions' },
-      { href: '/cancellation', label: 'Cancellation & Refund' },
+      { href: '/cancellation-policy', label: 'Cancellation & Refund' },
       { href: '/disclaimer', label: 'Disclaimer' },
     ],
   },
@@ -132,7 +132,7 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
         </div>
 
         <div className="mt-10 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs text-secondary-foreground/60 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Suresh Tour and Travels. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Suresh Tour and Travel. All rights reserved.</p>
           <p>Prices in INR. Itineraries subject to weather and darshan conditions.</p>
         </div>
       </div>
