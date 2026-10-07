@@ -42,10 +42,8 @@ export function SiteHeader({ phone }: { phone?: PhoneProp }) {
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 w-full transition-colors',
-        scrolled
-          ? 'border-b border-border bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/75'
-          : 'bg-transparent',
+        'sticky top-0 z-50 w-full border-b border-border/80 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/85 transition-colors',
+        scrolled ? 'shadow-sm' : 'shadow-none',
       )}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
