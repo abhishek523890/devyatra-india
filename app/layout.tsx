@@ -42,6 +42,10 @@ export const metadata: Metadata = {
     SITE_NAME,
   ],
   generator: 'Next.js',
+  icons: {
+    icon: '/icon.png',
+    apple: '/apple-icon.png',
+  },
   verification: {
     google: 'DUMx6bkF7aD-E7KP68g4iZ5iHIivC6lB7hTJyqIZenw',
   },
